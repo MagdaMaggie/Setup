@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import * as dat from 'dat.gui';
+//import * as dat from 'dat.gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 
 import nebula from './img/nebula.jpg';
 
@@ -25,12 +26,20 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 const orbit = new OrbitControls(camera, renderer.domElement);
+orbit.update();
 
 const axesHelper = new THREE.AxesHelper(5);
 scene.add(axesHelper);
 
-camera.position.set(-10, 30, 30);  //x, y, z Achsenpositionen
-orbit.update();
+camera.position.set(0, 6, 15);  //x, y, z Achsenpositionen
+camera.lookAt(scene.position);
+
+const labelRenderer = new CSS2DRenderer();
+labelRenderer.setSize(window.innerWidth, window.innerHeight);
+labelRenderer.domElement.style.position='absolute';
+labelRenderer.domElement.style.top='0px';
+labelRenderer.domElement.style.pointerEvents='none';
+document.body.appendChild(labelRenderer.domElement);
 
 // const boxGeometry = new THREE.BoxGeometry();
 // const boxMaterial = new THREE.MeshBasicMaterial({color:0x00FF00});
@@ -57,9 +66,9 @@ scene.add(gridHelper);
 const ambientLight = new THREE.AmbientLight(0x333333);
 scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.8);
+const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
 scene.add(directionalLight);
-directionalLight.position.set(-30, 50, 0);
+directionalLight.position.set(0, 10, 10);
 directionalLight.castShadow=true;
 directionalLight.shadow.camera.bottom=-12;
 
@@ -112,6 +121,17 @@ scene.background= textureLoader.load(nebula);
 // scene.add(box2);
 // box2.position.set(0, 15, 10);
 //box2.material.map = textureLoader.load(nebula);
+
+const p=document.createElement('p');
+p.textContent='Hello';
+const cPointLabel = new CSS2DObject(p);
+scene.add(cPointLabel);
+cPointLabel.position.set(-6, 0.8, 4);
+
+const div = document.createElement('div');
+div.appendChild(p);
+const divContainer = new CSS2DObject(div);
+scene.add(divContainer);
 
 const assetLoader=new GLTFLoader();
 
@@ -174,6 +194,8 @@ function animate(){
         mixer.update(clock.getDelta());
     }
 
+    labelRenderer.render(scene, camera);
+
     renderer.render(scene, camera);    //link scene and camera
 }
 
@@ -183,4 +205,5 @@ window.addEventListener('resize', function(){
     camera.aspect = window.innerWidth/this.window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    labelRenderer.setSize(this.window.innerWidth, this.window.innerHeight);
 })
