@@ -1,0 +1,115 @@
+*,
+*:before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:inherit;
+}
+
+.webgl{
+    position:fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+html, body{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+}
+
+html{
+    scroll-snap-type: y mandatory;
+    overflow-y:scroll;
+}
+
+
+section{
+    height: 100vh;
+    width: 100vw;
+    scroll-snap-align: start;
+    position: relative;
+}
+
+section .container{
+    max-width: 1360px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: flex-start;
+}
+
+section.one .container{
+    grid-template-areas: 'content ..';
+}
+
+section.two .container{
+    grid-template-areas: '.. content';
+}
+
+section.three .container{
+    grid-template-areas: 'content ..';
+}
+
+section.four .container{
+    grid-template-areas: '.. content';
+}
+
+section.five .container{
+    grid-template-areas: 'content ..';
+}
+
+section.six .container{
+    grid-template-areas: '.. content';
+}
+
+section.seven .container{
+    grid-template-areas: 'content ..';
+}
+
+section.eight .container{
+    grid-template-areas: '.. content';
+}
+
+.hero{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 50px;
+
+    grid-area: content;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 90px;
+    line-height: 100px;
+    font-weight: 700;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+}
+
+h2{
+    font-size: 45px;
+    font-weight: 600;
+    line-height: 50px;
+    display: block;
+    width: 100%;
+}
+
