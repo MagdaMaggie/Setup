@@ -1,0 +1,109 @@
+*, :before, :after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.webgl {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+html, body {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+section {
+  scroll-snap-align: start;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+section .container {
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  max-width: 1360px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: grid;
+}
+
+section.one .container {
+  grid-template-areas: "content .";
+}
+
+section.two .container {
+  grid-template-areas: ". content";
+}
+
+section.three .container {
+  grid-template-areas: "content .";
+}
+
+section.four .container {
+  grid-template-areas: ". content";
+}
+
+section.five .container {
+  grid-template-areas: "content .";
+}
+
+section.six .container {
+  grid-template-areas: ". content";
+}
+
+section.seven .container {
+  grid-template-areas: "content .";
+}
+
+section.eight .container {
+  grid-template-areas: ". content";
+}
+
+.hero {
+  flex-direction: column;
+  grid-area: content;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 50px;
+  display: flex;
+}
+
+h1 {
+  text-align: center;
+  width: 100%;
+  height: 100px;
+  font-size: 90px;
+  font-weight: 700;
+  line-height: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h2 {
+  width: 100%;
+  font-size: 45px;
+  font-weight: 600;
+  line-height: 50px;
+  display: block;
+}
+/*# sourceMappingURL=index.c92073ef.css.map */
